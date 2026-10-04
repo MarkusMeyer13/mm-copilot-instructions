@@ -1,0 +1,14 @@
+# GitHub Copilot CLI runtime data
+logs/
+session-state/
+command-history-state/
+session-store.db
+config.json
+ 
+# Local/secrets
+mcp-oauth-config/
+mcp-secrets/
+ 
+# Plugin/runtime state
+plugin-data/
+installed-plugins/
