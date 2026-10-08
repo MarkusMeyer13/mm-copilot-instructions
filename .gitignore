@@ -1,9 +1,18 @@
 # GitHub Copilot CLI runtime data
 logs/
+ide/
+sidebar-sessions-state/
 session-state/
 command-history-state/
 session-store.db
 config.json
+command-history-state.json
+installed-plugins.lock
+open-sessions-state.json
+permissions-config.json
+session-store.db-shm
+session-store.db-wal
+
  
 # Local/secrets
 mcp-oauth-config/
