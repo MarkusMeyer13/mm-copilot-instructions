@@ -12,6 +12,7 @@ open-sessions-state.json
 permissions-config.json
 session-store.db-shm
 session-store.db-wal
+config.json.trusted-folders.lock
 
  
 # Local/secrets
