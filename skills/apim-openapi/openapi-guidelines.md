@@ -9,6 +9,7 @@ OpenAPI 3.0.3
 ## Naming
 
 Paths:
+
 - lowercase
 - plural resource names
 - kebab-case where necessary
@@ -40,19 +41,31 @@ Typical:
 409 Conflict
 500 Internal Server Error
 
+## Request Headers
+
+Cams-Correlation-Id
+
+## Resonse Headers
+
+Typical:
+
+Cams-Build-Id
+Cams-Correlation-Id
+Cams-Result-Count
+
 ## Operation IDs
 
 Use:
 
-<Resource>_<Action>
+<Resource>-<Action>
 
 Examples:
 
-MonitoringFeature_Get
-MonitoringFeature_GetById
-MonitoringFeature_Create
-MonitoringFeature_Update
-MonitoringFeature_Delete
+monitoringfeature-get
+monitoringfeature-get-by-id
+monitoringfeature-create
+monitoringfeature-update
+monitoringfeature-delete
 
 ## Schemas
 

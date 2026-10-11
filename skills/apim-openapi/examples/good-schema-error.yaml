@@ -1,0 +1,438 @@
+openapi: 3.0.1
+info:
+  title: MonitoringProduct
+  description: "Manages a _MonitoringProduct_.\n"
+  version: v1
+servers:
+  - url: https://api.dev.aitms.int.sap/public/api/monitoring-product/v1
+paths:
+  /:
+    post:
+      tags:
+        - MonitoringProduct
+      summary: Add Monitoring Product.
+      description: "Add a _MonitoringProduct_.\n\n### MonitoringProduct Status Id\n\n\nThe following values are valid as _productStatusId_:  \n\n|MonitoringProduct Status Id| MonitoringProduct Status Name |\n|-|-|\n|e1aec68a-68c5-4edf-b0f2-82538fd2c526| Enabled|\n|abc838b3-7145-49bd-abed-378069c17e78| Disabled|\n\n### Integration Level Id\n\n\nThe following values are valid as _integrationLevelId_:  \n\n|Integration Level Id| Integration Level Name |\n|-|-|\n|8f1a0105-36dc-404d-9ada-f16b68624e0a| Basic|\n|4fee9f12-f975-444c-9bed-a9227db9d24c| Standard|\n|3f0809a0-9092-471a-9bae-1c1db1057b9d| Premium|\n\n### Constraints\n\n\n- The authenticated user has to be admin.            "
+      operationId: create-a-product
+      parameters:
+        - name: Cams-Correlation-Id
+          in: header
+          description: Format - uuid. Unique identifier value that is attached to requests and messages that allow reference to a particular transaction or event chain.
+          schema:
+            enum:
+              - c2aea097-7119-420d-b98e-c4c05e99ee42
+            type: string
+      requestBody:
+        description: Body for a new MonitoringProduct.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonitoringProductPost'
+            example:
+              name: SCOM
+              description: SCOM Product
+              overview: Detailed overview of the monitoring product.
+              integrationLevelId: 8f1a0105-36dc-404d-9ada-f16b68624e0a
+              productStatusId: e1aec68a-68c5-4edf-b0f2-82538fd2c526
+              tagIds:
+                - F4458FCF-A6A5-47D9-AF73-E06008B6B5A2
+              iconMediaType: image/png
+              icon: iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABgAAAAYADwa0LPAAAGkElEQVR42u3dMW5jNxRAUSuYHRj2/tenwltQqpTJN0LRj1c+px1Yor40FyweyNvj8Xi8AQT8Nb0AgO8SLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyPgzvYB/vL+/v319fU0vY5vH4/Gf/3673Zb+frfV9V39/ZXdn3/18/323+9PscMCMgQLyBAsIEOwgAzBAjIEC8gQLCDjmDmsK/f7/e3j42N6Gf/q9Dmc3XNQu+e0pufAVvn9PocdFpAhWECGYAEZggVkCBaQIVhAhmABGZk5rCu752ymzwNanUM6fU5p+vlOe/Xf77PYYQEZggVkCBaQIVhAhmABGYIFZAgWkPEyc1i/3avfazj9+pzBDgvIECwgQ7CADMECMgQLyBAsIEOwgAxzWIc4/byq3fcarjJn9TvYYQEZggVkCBaQIVhAhmABGYIFZAgWkPEyc1j1OZzpOavp5zc95zV9ntb086+wwwIyBAvIECwgQ7CADMECMgQLyBAsICMzh/X5+Tm9hFG7z8tanUPaPcc0/f6rfvvv91nssIAMwQIyBAvIECwgQ7CADMECMgQLyLg9pgdUeIrTz5Pa/f6r6/PfoMEOC8gQLCBDsIAMwQIyBAvIECwgQ7CAjGPOw5qe49l9L+D0nM/u86SmP9/pdp83ttsp368dFpAhWECGYAEZggVkCBaQIVhAhmABGcfMYV159TmV6Tmo6Xv/Tj+vavfv6/R7IU9hhwVkCBaQIVhAhmABGYIFZAgWkCFYQMYxc1jTc1bT52nt/vzTczj1Obnd73/1fE6fA/spdlhAhmABGYIFZAgWkCFYQIZgARmCBWTcHocMWEyft7Rqen3T7797favqn68yJ7WbHRaQIVhAhmABGYIFZAgWkCFYQIZgARmZ87CuTN/rNn2v4PTz2b2+K9NzSNPrn37/n2KHBWQIFpAhWECGYAEZggVkCBaQIVhAxjFzWFdOnyOanvPavb7V11+1+vqnfz/Tc4AVdlhAhmABGYIFZAgWkCFYQIZgARmCBWQccy/h8gc5fE6p7vQ5oPr7T/++KhmwwwIyBAvIECwgQ7CADMECMgQLyBAsICNzHtaq089rujJ9ntdu9XsPd5/XNf35T2GHBWQIFpAhWECGYAEZggVkCBaQIVhAxsuchzVt+l6/V7/X7vTPVz+Pbfr7/S47LCBDsIAMwQIyBAvIECwgQ7CADMECMo6Zw3r1e92m57RWTX8/9Tk1c1rPYYcFZAgWkCFYQIZgARmCBWQIFpAhWEDGMXNY006f05n+mk6f85l+/tNzWqumf1/fZYcFZAgWkCFYQIZgARmCBWQIFpAhWEDGn+kFPMv0HNPq60/PaU0/v93rW51z2v18dj/f6TmvZ7HDAjIEC8gQLCBDsIAMwQIyBAvIECwg45g5rPq9baffu3e66Tmr3etfdfqc10+xwwIyBAvIECwgQ7CADMECMgQLyBAsIMO9hIeYPo/q9Dm46Tm105//9Pp/ih0WkCFYQIZgARmCBWQIFpAhWECGYAEZx5yH9f7+/vb19TW9jG2u5mDqc0anz5HV7y3crbJ+OywgQ7CADMECMgQLyBAsIEOwgAzBAjKOmcO6cr/f3z4+PqaX8a9W58im79WbXl/99XfPKa3OkVXmrK7YYQEZggVkCBaQIVhAhmABGYIFZAgWkJGZw7pSn7PZ7fT1T5+Xtfvvd6+/fp7Zd9lhARmCBWQIFpAhWECGYAEZggVkCBaQ8TJzWHWr5x1N32s4rf58dp93tfr+p7DDAjIEC8gQLCBDsIAMwQIyBAvIECwgwxzWL3H6nNX0HNXV60+f17U6p7X7/X+KHRaQIVhAhmABGYIFZAgWkCFYQIZgARkvM4d1ypzI/3X6HMzu9999HtjuObTTX3/69/MsdlhAhmABGYIFZAgWkCFYQIZgARmCBWRk5rA+Pz+nl5DmPKfZOa3T752szGnZYQEZggVkCBaQIVhAhmABGYIFZAgWkHF7VAYwgF/PDgvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8j4G6Z+Riq6pKjyAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI0LTA1LTAyVDA0OjU5OjQ2KzAwOjAwQ3aL9QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNC0wNS0wMlQwNDo1OTo0NiswMDowMDIrM0kAAAAASUVORK5CYII=
+              monitoringPropertyIds:
+                - 8d1b95c3-cf93-4871-afe5-11ab94b05bfd
+      responses:
+        '201':
+          description: Created
+          headers:
+            Cams-Correlation-Id:
+              description: Correlation Id.
+              required: true
+              schema:
+                type: string
+                format: uuid
+                example: c2aea097-7119-420d-b98e-c4c05e99ee42
+            Cams-Build-Id:
+              description: Build Id.
+              required: true
+              schema:
+                type: integer
+                example: 16202
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringProductGet'
+              example:
+                monitoringProductId: 72206c58-9c2f-40b0-b885-df802edfcedf
+                name: AITMS
+                description: SCOM Product
+                overview: Detailed overview of the monitoring product.
+                integrationLevelId: 8f1a0105-36dc-404d-9ada-f16b68624e0a
+                productStatusId: e1aec68a-68c5-4edf-b0f2-82538fd2c526
+                tagIds:
+                  - F4458FCF-A6A5-47D9-AF73-E06008B6B5A2
+                iconMediaType: image/png
+                icon: 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
+                monitoringPropertyIds:
+                  - 8d1b95c3-cf93-4871-afe5-11ab94b05bfd
+                identifier: PR00000001
+                created: '2024-01-31T01:15:30.0000000+00:00'
+                createdByUserId: 1cee77dd-19f5-487b-be24-560f61f71aac
+                modified: '2024-01-31T01:15:30.0000000+00:00'
+                modifiedByUserId: bc610734-c686-4c04-9aa3-f022a010f1d9
+        '400':
+          description: Bad Request
+          headers:
+            Cams-Correlation-Id:
+              description: Correlation Id.
+              required: true
+              schema:
+                type: string
+                format: uuid
+                example: c2aea097-7119-420d-b98e-c4c05e99ee42
+            Cams-Build-Id:
+              description: Build Id.
+              required: true
+              schema:
+                type: integer
+                example: 16202
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Body is not a valid JSON-Document.
+                camsCorrelationId: c2aea097-7119-420d-b98e-c4c05e99ee42
+        '403':
+          description: Forbidden
+          headers:
+            Cams-Correlation-Id:
+              description: Correlation Id.
+              required: true
+              schema:
+                type: string
+                format: uuid
+                example: c2aea097-7119-420d-b98e-c4c05e99ee42
+            Cams-Build-Id:
+              description: Build Id.
+              required: true
+              schema:
+                type: integer
+                example: 16202
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: The current user does not have required permissions.
+                camsCorrelationId: c2aea097-7119-420d-b98e-c4c05e99ee42
+    get:
+      tags:
+        - MonitoringProduct
+      summary: Get Monitoring Products.
+      description: "Get all _Monitoring Products_.\n\n### MonitoringProduct Status Id\n\n\nThe following values are valid as _productStatusId_:  \n\n|MonitoringProduct Status Id| MonitoringProduct Status Name |\n|-|-|\n|e1aec68a-68c5-4edf-b0f2-82538fd2c526| Enabled|\n|abc838b3-7145-49bd-abed-378069c17e78| Disabled|\n\n### Integration Level Id\n\n\nThe following values are valid as _integrationLevelId_:  \n\n|Integration Level Id| Integration Level Name |\n|-|-|\n|8f1a0105-36dc-404d-9ada-f16b68624e0a| Basic|\n|4fee9f12-f975-444c-9bed-a9227db9d24c| Standard|\n|3f0809a0-9092-471a-9bae-1c1db1057b9d| Premium|"
+      operationId: get-products
+      parameters:
+        - name: Cams-Correlation-Id
+          in: header
+          description: Format - uuid. Unique identifier value that is attached to requests and messages that allow reference to a particular transaction or event chain.
+          required: true
+          schema:
+            enum:
+              - c2aea097-7119-420d-b98e-c4c05e99ee42
+            type: string
+            format: uuid
+            example: c2aea097-7119-420d-b98e-c4c05e99ee42
+      responses:
+        '200':
+          description: OK
+          headers:
+            Cams-Correlation-Id:
+              description: Correlation Id.
+              required: true
+              schema:
+                type: string
+                format: uuid
+                example: c2aea097-7119-420d-b98e-c4c05e99ee42
+            Cams-Build-Id:
+              description: Build Id.
+              required: true
+              schema:
+                type: integer
+                example: 16202
+            Cams-Result-Count:
+              description: Count of returned items.
+              required: true
+              schema:
+                type: integer
+                example: 7
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonitoringProductGet'
+              example:
+                - monitoringProductId: 72206c58-9c2f-40b0-b885-df802edfcedf
+                  name: AITMS
+                  description: SCOM Product
+                  overview: Detailed overview of the monitoring product.
+                  integrationLevelId: 8f1a0105-36dc-404d-9ada-f16b68624e0a
+                  productStatusId: e1aec68a-68c5-4edf-b0f2-82538fd2c526
+                  tagIds:
+                    - F4458FCF-A6A5-47D9-AF73-E06008B6B5A2
+                  iconMediaType: image/png
+                  icon: iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABgAAAAYADwa0LPAAAGkElEQVR42u3dMW5jNxRAUSuYHRj2/tenwltQqpTJN0LRj1c+px1Yor40FyweyNvj8Xi8AQT8Nb0AgO8SLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyPgzvYB/vL+/v319fU0vY5vH4/Gf/3673Zb+frfV9V39/ZXdn3/18/323+9PscMCMgQLyBAsIEOwgAzBAjIEC8gQLCDjmDmsK/f7/e3j42N6Gf/q9Dmc3XNQu+e0pufAVvn9PocdFpAhWECGYAEZggVkCBaQIVhAhmABGZk5rCu752ymzwNanUM6fU5p+vlOe/Xf77PYYQEZggVkCBaQIVhAhmABGYIFZAgWkPEyc1i/3avfazj9+pzBDgvIECwgQ7CADMECMgQLyBAsIEOwgAxzWIc4/byq3fcarjJn9TvYYQEZggVkCBaQIVhAhmABGYIFZAgWkPEyc1j1OZzpOavp5zc95zV9ntb086+wwwIyBAvIECwgQ7CADMECMgQLyBAsICMzh/X5+Tm9hFG7z8tanUPaPcc0/f6rfvvv91nssIAMwQIyBAvIECwgQ7CADMECMgQLyLg9pgdUeIrTz5Pa/f6r6/PfoMEOC8gQLCBDsIAMwQIyBAvIECwgQ7CAjGPOw5qe49l9L+D0nM/u86SmP9/pdp83ttsp368dFpAhWECGYAEZggVkCBaQIVhAhmABGcfMYV159TmV6Tmo6Xv/Tj+vavfv6/R7IU9hhwVkCBaQIVhAhmABGYIFZAgWkCFYQMYxc1jTc1bT52nt/vzTczj1Obnd73/1fE6fA/spdlhAhmABGYIFZAgWkCFYQIZgARmCBWTcHocMWEyft7Rqen3T7797favqn68yJ7WbHRaQIVhAhmABGYIFZAgWkCFYQIZgARmZ87CuTN/rNn2v4PTz2b2+K9NzSNPrn37/n2KHBWQIFpAhWECGYAEZggVkCBaQIVhAxjFzWFdOnyOanvPavb7V11+1+vqnfz/Tc4AVdlhAhmABGYIFZAgWkCFYQIZgARmCBWQccy/h8gc5fE6p7vQ5oPr7T/++KhmwwwIyBAvIECwgQ7CADMECMgQLyBAsICNzHtaq089rujJ9ntdu9XsPd5/XNf35T2GHBWQIFpAhWECGYAEZggVkCBaQIVhAxsuchzVt+l6/V7/X7vTPVz+Pbfr7/S47LCBDsIAMwQIyBAvIECwgQ7CADMECMo6Zw3r1e92m57RWTX8/9Tk1c1rPYYcFZAgWkCFYQIZgARmCBWQIFpAhWEDGMXNY006f05n+mk6f85l+/tNzWqumf1/fZYcFZAgWkCFYQIZgARmCBWQIFpAhWEDGn+kFPMv0HNPq60/PaU0/v93rW51z2v18dj/f6TmvZ7HDAjIEC8gQLCBDsIAMwQIyBAvIECwg45g5rPq9baffu3e66Tmr3etfdfqc10+xwwIyBAvIECwgQ7CADMECMgQLyBAsIMO9hIeYPo/q9Dm46Tm105//9Pp/ih0WkCFYQIZgARmCBWQIFpAhWECGYAEZx5yH9f7+/vb19TW9jG2u5mDqc0anz5HV7y3crbJ+OywgQ7CADMECMgQLyBAsIEOwgAzBAjKOmcO6cr/f3z4+PqaX8a9W58im79WbXl/99XfPKa3OkVXmrK7YYQEZggVkCBaQIVhAhmABGYIFZAgWkJGZw7pSn7PZ7fT1T5+Xtfvvd6+/fp7Zd9lhARmCBWQIFpAhWECGYAEZggVkCBaQ8TJzWHWr5x1N32s4rf58dp93tfr+p7DDAjIEC8gQLCBDsIAMwQIyBAvIECwgwxzWL3H6nNX0HNXV60+f17U6p7X7/X+KHRaQIVhAhmABGYIFZAgWkCFYQIZgARkvM4d1ypzI/3X6HMzu9999HtjuObTTX3/69/MsdlhAhmABGYIFZAgWkCFYQIZgARmCBWRk5rA+Pz+nl5DmPKfZOa3T752szGnZYQEZggVkCBaQIVhAhmABGYIFZAgWkHF7VAYwgF/PDgvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8j4G6Z+Riq6pKjyAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI0LTA1LTAyVDA0OjU5OjQ2KzAwOjAwQ3aL9QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNC0wNS0wMlQwNDo1OTo0NiswMDowMDIrM0kAAAAASUVORK5CYII=
+                  monitoringPropertyIds:
+                    - 8d1b95c3-cf93-4871-afe5-11ab94b05bfd
+                  identifier: PR00000001
+                  created: '2024-01-31T01:15:30.0000000+00:00'
+                  createdByUserId: 1cee77dd-19f5-487b-be24-560f61f71aac
+                  modified: '2024-01-31T01:15:30.0000000+00:00'
+                  modifiedByUserId: bc610734-c686-4c04-9aa3-f022a010f1d9
+        '400':
+          description: Bad Request
+          headers:
+            Cams-Correlation-Id:
+              description: Correlation Id.
+              required: true
+              schema:
+                type: string
+                format: uuid
+                example: c2aea097-7119-420d-b98e-c4c05e99ee42
+            Cams-Build-Id:
+              description: Build Id.
+              required: true
+              schema:
+                type: integer
+                example: 16202
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: An error occurred.
+                camsCorrelationId: c2aea097-7119-420d-b98e-c4c05e99ee42
+
+components:
+  schemas:
+    MonitoringProductPost:
+      required:
+        - name
+        - description
+        - productStatusId
+        - integrationLevelId
+      type: object
+      properties:
+        name:
+          maxLength: 32
+          pattern: '^(?! )[a-zA-Z0-9_\\-\\s]{1,32}(?<! )$'
+          type: string
+          description: Name of the monitoring product.
+          example: SCOM
+        description:
+          maxLength: 256
+          type: string
+          description: Description of the monitoring product.
+          example: SCOM Product
+        overview:
+          type: string
+          description: Overview of the monitoring product.
+          example: Detailed overview of the monitoring product.
+        integrationLevelId:
+          enum:
+            - 8f1a0105-36dc-404d-9ada-f16b68624e0a
+            - 4fee9f12-f975-444c-9bed-a9227db9d24c
+            - 3f0809a0-9092-471a-9bae-1c1db1057b9d
+          type: string
+          description: "Unique Id of the integration level.\n\nThe following values can be used:  \n\n\n|Integration Level Id| Integration Level Name |\n|-|-|\n|8f1a0105-36dc-404d-9ada-f16b68624e0a| Basic|\n|4fee9f12-f975-444c-9bed-a9227db9d24c| Standard|\n|3f0809a0-9092-471a-9bae-1c1db1057b9d| Premium|\n"
+          format: uuid
+          example: 8f1a0105-36dc-404d-9ada-f16b68624e0a
+        productStatusId:
+          enum:
+            - e1aec68a-68c5-4edf-b0f2-82538fd2c526
+            - abc838b3-7145-49bd-abed-378069c17e78
+          type: string
+          description: "Unique Id of the monitoring product status.\n\nThe following values can be used:  \n\n|MonitoringProduct Status Id| MonitoringProduct Status Name |\n|-|-|\n|e1aec68a-68c5-4edf-b0f2-82538fd2c526| Enabled|\n|abc838b3-7145-49bd-abed-378069c17e78| Disabled|\n"
+          format: uuid
+          example: e1aec68a-68c5-4edf-b0f2-82538fd2c526
+        tagIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            example: F4458FCF-A6A5-47D9-AF73-E06008B6B5A2
+          description: Unique Id of the tags.
+        iconMediaType:
+          enum:
+            - image/png
+            - image/jpeg
+            - image/jpg
+            - image/gif
+          type: string
+          description: Content-Type of Icon.
+          nullable: true
+          example: image/png
+        icon:
+          type: string
+          description: Image of the monitoring product.
+          format: byte
+          nullable: true
+          example: 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
+        monitoringPropertyIds:
+          type: array
+          items:
+            type: string
+            description: Unique Id of the properties.
+            format: uuid
+            example: 8d1b95c3-cf93-4871-afe5-11ab94b05bfd
+          description: Unique Ids of the properties.
+      description: Create Monitoring Product message
+    MonitoringProductGet:
+      required:
+        - name
+        - description
+      allOf:
+        - $ref: '#/components/schemas/MonitoringProductPut'
+        - type: object
+          properties:
+            monitoringProductId:
+              type: string
+              description: Unique Id of the monitoring product.
+              format: uuid
+              example: 72206c58-9c2f-40b0-b885-df802edfcedf
+            name:
+              maxLength: 28
+              type: string
+              description: Unique name of the monitoring product.
+              example: AITMS
+            identifier:
+              maxLength: 10
+              pattern: '^PR[0-9]{8}$'
+              type: string
+              description: Unique identifier of the monitoring product.
+              example: PR00000001
+            created:
+              type: string
+              description: Date and time when the entry was created.
+              format: date-time
+              example: '2024-01-31T01:15:30.0000000+00:00'
+            createdByUserId:
+              type: string
+              description: User Id who created the entry.
+              format: uuid
+              example: 1cee77dd-19f5-487b-be24-560f61f71aac
+            modified:
+              type: string
+              description: Date and time when the entry was last modified.
+              format: date-time
+              example: '2024-01-31T01:15:30.0000000+00:00'
+            modifiedByUserId:
+              type: string
+              description: User Id who did the last modification.
+              format: uuid
+              example: bc610734-c686-4c04-9aa3-f022a010f1d9
+    MonitoringProductPut:
+      required:
+        - monitoringProductId
+        - name
+        - description
+        - productStatusId
+        - integrationLevelId
+      type: object
+      properties:
+        monitoringProductId:
+          type: string
+          description: Unique Id of the monitoring product.
+          format: uuid
+          example: 72206c58-9c2f-40b0-b885-df802edfcedf
+        name:
+          maxLength: 32
+          pattern: '^(?! )[a-zA-Z0-9_\\-\\s]{1,32}(?<! )$'
+          type: string
+          description: Name of the monitoring product.
+          example: SCOM
+        description:
+          maxLength: 256
+          type: string
+          description: Description of the monitoring product.
+          example: SCOM Product
+        overview:
+          type: string
+          description: Overview of the monitoring product.
+          example: Detailed overview of the monitoring product.
+        integrationLevelId:
+          enum:
+            - 8f1a0105-36dc-404d-9ada-f16b68624e0a
+            - 4fee9f12-f975-444c-9bed-a9227db9d24c
+            - 3f0809a0-9092-471a-9bae-1c1db1057b9d
+          type: string
+          description: "Unique Id of the integration level.\n\nThe following values can be used:  \n\n\n|Integration Level Id| Integration Level Name |\n|-|-|\n|8f1a0105-36dc-404d-9ada-f16b68624e0a| Basic|\n|4fee9f12-f975-444c-9bed-a9227db9d24c| Standard|\n|3f0809a0-9092-471a-9bae-1c1db1057b9d| Premium|\n"
+          format: uuid
+          example: 8f1a0105-36dc-404d-9ada-f16b68624e0a
+        productStatusId:
+          enum:
+            - e1aec68a-68c5-4edf-b0f2-82538fd2c526
+            - abc838b3-7145-49bd-abed-378069c17e78
+          type: string
+          description: "Unique Id of the monitoring product status.\n\nThe following values can be used:  \n\n|MonitoringProduct Status Id| MonitoringProduct Status Name |\n|-|-|\n|e1aec68a-68c5-4edf-b0f2-82538fd2c526| Enabled|\n|abc838b3-7145-49bd-abed-378069c17e78| Disabled|\n"
+          format: uuid
+          example: e1aec68a-68c5-4edf-b0f2-82538fd2c526
+        tagIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            example: F4458FCF-A6A5-47D9-AF73-E06008B6B5A2
+          description: Unique Id of the tags.
+        iconMediaType:
+          enum:
+            - image/png
+            - image/jpeg
+            - image/jpg
+            - image/gif
+          type: string
+          description: Content-Type of Icon.
+          nullable: true
+          example: image/png
+        icon:
+          type: string
+          description: Image of the monitoring product.
+          format: byte
+          nullable: true
+          example: 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
+        monitoringPropertyIds:
+          type: array
+          items:
+            type: string
+            description: Unique Id of the properties.
+            format: uuid
+            example: 8d1b95c3-cf93-4871-afe5-11ab94b05bfd
+          description: Unique Ids of the properties.
+      description: Update a product.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message for current request.
+          example: Body is not a valid JSON-Document.
+        camsCorrelationId:
+          type: string
+          description: Correlation Id.
+          format: uuid
+          example: c2aea097-7119-420d-b98e-c4c05e99ee42
+      description: Error message.
+
+
+
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
