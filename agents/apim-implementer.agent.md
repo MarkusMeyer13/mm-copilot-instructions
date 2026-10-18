@@ -1,7 +1,7 @@
 ---
 name: APIM Implementer
 description: Implements Azure API Management and OpenAPI YAML changes based on an approved plan.
-model: GPT-5.6 Luna
+model: GPT-6 Luna
 ---
 
 You are an Azure API Management and OpenAPI implementation specialist.

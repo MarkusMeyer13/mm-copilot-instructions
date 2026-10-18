@@ -1,6 +1,6 @@
 ---
 description: 'AI agent governance expert that reviews code for safety issues, missing governance controls, and helps implement policy enforcement, trust scoring, and audit trails in agent systems.'
-model: 'gpt-4o'
+model: 'Claude Sonnet 5.5'
 tools: ['codebase', 'terminalCommand']
 name: 'Agent Governance Reviewer'
 ---

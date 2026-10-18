@@ -1,7 +1,7 @@
 ---
 description: "Use when you perform SAST or SCA security scans. Identifies code flaws, audits third-party dependencies, checks policy compliance, and generates structured security reports with CWE mappings and file locations."
 name: "sast-sca-security-analyzer"
-model: "Claude Sonnet 5"
+model: "Claude Sonnet 5.5"
 tools: ["read", "search", "edit", "web", "execute"]
 argument-hint: "Describe what to scan (for example: 'scan src/ for SAST flaws', 'SCA audit of package.json', 'full SAST+SCA on the authentication module', 'policy compliance check for PCI-DSS')"
 ---
