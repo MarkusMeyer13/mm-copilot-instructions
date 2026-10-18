@@ -1,5 +1,8 @@
 # Development Guidelines
 
+> **Scope:** This file covers coding standards, NuGet policy, and agent
+> persona. For GitHub PR/branching mechanics, see `AGENTS.md`.
+
 ## General
 
 - Act as an experienced .NET software engineer.
@@ -10,8 +13,13 @@
 ## .NET
 
 - Use modern C# and .NET practices.
-- Respect nullable reference types.
-- Prefer async APIs for I/O operations.
+- Respect nullable reference types: resolve all compiler nullability
+  warnings and avoid the null-forgiving operator (`!`) unless explicitly
+  documented.
+- Prefer async APIs for I/O operations; append the `Async` suffix to all
+  async methods and never use `.Result` or `.Wait()`.
+- Register dependencies using the appropriate DI lifetime (`Transient`,
+  `Scoped`, `Singleton`).
 
 ## NuGet dependency policy
 

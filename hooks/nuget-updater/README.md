@@ -23,9 +23,10 @@ The goal is to prevent Copilot from committing changes that leave the repository
 ```text
 mm-copilot-instructions/
 └── hooks/
-    ├── hooks.json
-    └── README.md
-    └── pre-commit.ps1
+    └── nuget-updater/
+        ├── hooks.json
+        ├── README.md
+        └── pre-commit.ps1
 ```
 
 ## Hook Configuration
@@ -33,7 +34,7 @@ mm-copilot-instructions/
 The hook is configured in:
 
 ```text
-.mm-copilot-instructions/hooks/hooks.json
+mm-copilot-instructions/hooks/nuget-updater/hooks.json
 ```
 
 Example:
@@ -204,7 +205,7 @@ The PowerShell script should also be executable independently of Copilot.
 This makes it possible to validate changes while developing the hook:
 
 ```powershell
-pwsh mm-copilot-instructions/hooks/pre-commit.ps1
+pwsh mm-copilot-instructions/hooks/nuget-updater/pre-commit.ps1
 ```
 
 When debugging the Copilot-specific behaviour, remember that the `preToolUse` hook receives information about the tool invocation through its hook input.

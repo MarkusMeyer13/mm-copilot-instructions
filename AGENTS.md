@@ -1,5 +1,9 @@
 # Agent Instructions: C# & GitHub Copilot PR Workflow
 
+> **Scope:** This file covers GitHub PR/branching mechanics. For coding
+> style, NuGet dependency policy, and agent persona, see
+> `copilot-instructions.md`.
+
 ## Project Context
 This is a C# .NET 8 / .NET 9 project. We enforce strict type safety, asynchronous patterns, clean architecture, and automated PR management via the GitHub CLI.
 
@@ -10,11 +14,6 @@ Before creating a Pull Request, you MUST execute the following verification loop
 2. **Build:** `dotnet build --configuration Release` (Must pass with 0 errors and 0 warnings)
 3. **Format:** `dotnet format` (Fix whitespace, style, and analyzer rules automatically)
 4. **Test:** `dotnet test --no-build --configuration Release` (All tests must pass)
-
-## C# Coding Style & Constraints
-- **Asynchronous Code:** Always use `async`/`await` for I/O operations. Append `Async` suffix to all async methods. Never use `.Result` or `.Wait()`.
-- **Null Safety:** Strict Nullable Reference Types (`<Nullable>enable</Nullable>`) are active. Resolve all compiler nullability warnings. Avoid `!` (null-forgiving operator) unless explicitly documented.
-- **Dependency Injection:** Register dependencies using the appropriate lifetime (`Transient`, `Scoped`, `Singleton`).
 
 ## GitHub PR Workflow (via GitHub CLI)
 When tasked with preparing a change or creating a Pull Request, automate the process using the `gh` CLI.
