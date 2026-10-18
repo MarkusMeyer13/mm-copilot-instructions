@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "powershell": "mm-copilot-instructions/hooks/nuget-updater/pre-commit.ps1",
+        "cwd": ".",
+        "timeoutSec": 300
+      }
+    ]
+  }
+}

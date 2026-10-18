@@ -13,6 +13,26 @@
 - Respect nullable reference types.
 - Prefer async APIs for I/O operations.
 
+## NuGet dependency policy
+
+Before creating a git commit for a .NET repository:
+
+1. Detect all .sln, .slnx and .csproj files.
+2. Run `dotnet restore`.
+3. Check NuGet dependencies for outdated packages.
+4. Report outdated packages grouped into:
+   - patch updates
+   - minor updates
+   - major updates
+5. Patch and minor updates may be applied automatically.
+6. Major version updates must not be applied automatically.
+7. After updating packages run:
+   - dotnet restore
+   - dotnet build
+   - dotnet test
+8. Only commit if restore, build and tests succeed.
+9. Include NuGet package updates in the commit summary.
+
 ## EF Core
 
 - Consider query performance.
