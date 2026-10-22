@@ -22,3 +22,6 @@ mcp-secrets/
 # Plugin/runtime state
 plugin-data/
 installed-plugins/
+
+settings.json
+settings.json.lock
