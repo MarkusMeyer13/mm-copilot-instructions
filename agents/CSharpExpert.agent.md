@@ -37,6 +37,7 @@ When invoked:
 - Reuse existing methods as much as possible
 - Add comments when adding public methods
 - Move user-facing strings (e.g., AnalyzeAndConfirmNuGetConfigChanges) into resource files. Keep error/help text localizable.
+- Treat `dotnet build` as warning-free: resolve CA/NU/CS diagnostics in code you touch (e.g., `CA1515` internal visibility, `CA1869` cached `JsonSerializerOptions`, `CA1859` concrete collection types, `CA1056` `Uri` over `string`) instead of suppressing them. For a bulk warning sweep across a codebase, use the C#/.NET Janitor agent.
 
 ## Error Handling & Edge Cases
 

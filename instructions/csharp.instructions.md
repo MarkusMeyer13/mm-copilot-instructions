@@ -31,6 +31,41 @@ applyTo: '**/*.cs'
 - Use `nameof` instead of string literals when referring to member names.
 - Ensure that XML doc comments are created for any public APIs. When applicable, include `<example>` and `<code>` documentation in the comments.
 
+## Compiler Warnings and Code Analysis
+
+- Treat `dotnet build` warnings as blocking: a change is not complete while
+  it introduces or leaves unresolved compiler warnings or code-analysis
+  (CA) diagnostics.
+- Never silence a diagnostic with `#pragma warning disable`, `NoWarn`, or
+  `[SuppressMessage]` as a shortcut. Fix the underlying issue; only add a
+  documented suppression when the rule genuinely does not apply.
+- Work through warnings grouped by rule ID (not file-by-file) so the same
+  fix pattern is applied consistently across the codebase.
+- Common rules and their fixes:
+  - **CA1515** (type can be made `internal`): remove `public` from types
+    not part of a published library's API surface.
+  - **CA1056** (`string` URL should be `System.Uri`): change the member
+    type to `Uri` and update callers.
+  - **CA2007** (missing `ConfigureAwait`): add `.ConfigureAwait(false)` to
+    awaited calls in library/non-UI code.
+  - **CA1869** (reused `JsonSerializerOptions`): hoist the options
+    instance into a `static readonly` field instead of constructing it
+    per call.
+  - **CA1859** (use concrete types for performance): prefer concrete
+    return/parameter types (e.g., `List<T>`, `Dictionary<TKey, TValue>`)
+    over interface types when the extra abstraction isn't needed.
+  - **CA1303** (literal passed where localized resource expected): move
+    user-facing strings into a `.resx` resource file; confirm the
+    resource-table approach with the user before restructuring existing
+    message strings.
+  - **NU1510** (`PackageReference` will be pruned): remove the reference
+    once confirmed it's an implicit/transitive dependency the SDK already
+    provides.
+- Rules that only change public surface area, awaiting, caching, or
+  concrete types are safe to fix directly. Rules that touch localization
+  or public contracts (CA1303, CA1056) can ripple into other files —
+  apply them but call out the broader impact to the user.
+
 ## Project Setup and Structure
 
 - Guide users through creating a new .NET project with the appropriate templates.

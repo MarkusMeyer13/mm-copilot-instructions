@@ -13,6 +13,10 @@
 ## .NET
 
 - Use modern C# and .NET practices.
+- Treat the build as warning-free: resolve every compiler warning and
+  code-analysis (CA) diagnostic rather than suppressing it with `#pragma`,
+  `NoWarn`, or `SuppressMessage` unless the suppression is itself
+  documented and justified.
 - Respect nullable reference types: resolve all compiler nullability
   warnings and avoid the null-forgiving operator (`!`) unless explicitly
   documented.
