@@ -18,7 +18,9 @@ Before generating YAML:
 6. Consider authentication and authorization.
 7. Check Azure API Management compatibility.
 
-Prefer reusable definitions under components.
+Prefer reusable definitions under components (schemas, securitySchemes),
+except headers: APIM does not support `components/headers`, so define
+headers inline per operation.
 
 Read `openapi-guidelines.md` before generating or reviewing
 an OpenAPI specification.

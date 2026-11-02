@@ -53,6 +53,25 @@ Cams-Build-Id
 Cams-Correlation-Id
 Cams-Result-Count
 
+## Reusable Headers
+
+Azure API Management does not support reusable headers under
+`components/headers`, so never define or reference them
+(`$ref: '#/components/headers/...'`).
+
+Define every request and response header inline on each operation:
+
+responses:
+  '204':
+    description: No Content.
+    headers:
+      Cams-Correlation-Id:
+        description: Correlation Id.
+        schema:
+          type: string
+          format: uuid
+          example: c2aea097-7119-420d-b98e-c4c05e99ee42
+
 ## Operation IDs
 
 Use:
